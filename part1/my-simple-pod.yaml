@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-simple-pod
+spec:
+#  restartPolicy: OnFailure # 실패 시, 재시작
+#  restartPolicy: Never # 실패 시, 재시작하지 않음
+#  restartPolicy: Always # 항상 재시작 (default)
+  containers:
+    - name: my-simple-container
+#      image: nginx:1.24
+      image: busybox
+      command: ['sh', '-c', 'exit 1']
