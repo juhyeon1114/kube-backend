@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 3
+  strategy:
+    #    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1 # 바로 종료되도 괜찮은 Pod의 개수
+      maxSurge: 1 # 업데이트 시, 몇개의 Pod가 더 만들어질 수 있는지
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-container
+          image: nginx
