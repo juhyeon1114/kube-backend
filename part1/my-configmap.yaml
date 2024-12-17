@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  PROFILE: "dev"
+  DB_HOST: "10.20.30.40"
+  welcome-script: |
+    echo Hello!
+    echo DB is $DB_HOST
