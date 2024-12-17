@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-simple-job
+spec:
+  activeDeadlineSeconds: 200
+  ttlSecondsAfterFinished: 10
+  parallelism: 1 # 동시에 실행할 파드 수
+  completions: 3 # 총 몇 번 실행할 것인지
+  backoffLimit: 3 # 장애 발생 시, 얼만큼 재실행할 것인지
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: my-job-container
+          image: busybox
+          command: [ "sh", "-c", "sleep 5" ]
