@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc-100
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: host-pv
+  resources:
+    requests:
+      storage: 100Mi
