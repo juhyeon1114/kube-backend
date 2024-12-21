@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-dynamic-statefulset
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-dynamic-statefulset
+  template:
+    metadata:
+      labels:
+        app: my-dynamic-statefulset
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          volumeMounts:
+            - name: dynamic-volume
+              mountPath: /tmp/dynamic
+  volumeClaimTemplates:
+    - metadata:
+        name: dynamic-volume
+      spec:
+        storageClassName: local-storage
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Mi
+  serviceName: my-dynamic-statefulset

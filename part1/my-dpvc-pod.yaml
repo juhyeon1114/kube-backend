@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-dpvc-pod
+spec:
+  volumes:
+    - name: dynamic-pvc
+      persistentVolumeClaim:
+        claimName: my-dynamic-pvc-150
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+        - mountPath: "/data/dpvc"
+          name: dynamic-pvc
