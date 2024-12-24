@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: ClusterIP
+  selector:
+    app: my-nginx
+  ports:
+    - protocol: TCP
+      port: 9080 # 서비스 포트
+      targetPort: 80 # 서비스가 바라볼 Pod의 포트
